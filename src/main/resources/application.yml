@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: aiplayer-service
+  data :
+    mongodb:
+      url : mongodb+srv://form3:fRr0QrGYD2d3AsQQpevy@cluster0.mongodb.net?retryWrites=true
+      database : interview_test
+  jackson:
+    date-format : yyyy-MM-dd
+    serialization : 
+      WRITE_DATES_AS_TIMESTAMPS : false
+
