@@ -3,7 +3,7 @@ spring:
     name: aiplayer-service
   data :
     mongodb:
-      url : mongodb+srv://form3:fRr0QrGYD2d3AsQQpevy@cluster0.mongodb.net?retryWrites=true
+      url : mongodb+srv://<username>:<password>@cluster0.mongodb.net?retryWrites=true
       database : interview_test
   jackson:
     date-format : yyyy-MM-dd
