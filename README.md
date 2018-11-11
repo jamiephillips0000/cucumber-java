@@ -20,7 +20,34 @@ Deliverables
 				throw new RuntimeException("Error status code should have been + '" + statusCode + "'");
 			}
 		}catch (Throwable e) {
-			if(e.getMessage().contains("Resource Validation Error : ")) {
+	if(e.getMessage().contains("Resource Validation Error : ")
+					|| e.getMessage().contains("problem: type")
+					|| e.getMessage().contains("problem: version")
+					|| e.getMessage().contains("problem: organisationId")
+					|| e.getMessage().contains("problem: amount")
+					|| e.getMessage().contains("problem: currency")
+					|| e.getMessage().contains("problem: receiverChargesCurrency")
+					|| e.getMessage().contains("problem: endToEndReference")
+					|| e.getMessage().contains("problem: numericReference")
+					|| e.getMessage().contains("problem: payment_id")
+					|| e.getMessage().contains("problem: paymentPurpose")
+					|| e.getMessage().contains("problem: paymentScheme")
+					|| e.getMessage().contains("problem: paymentType")
+					|| e.getMessage().contains("problem: processing_date")
+					|| e.getMessage().contains("problem: reference")
+					|| e.getMessage().contains("problem: schemePaymentSubType")
+					|| e.getMessage().contains("problem: schemePaymentType")
+					|| e.getMessage().contains("problem: accountName")
+					|| e.getMessage().contains("problem: accountNumberCode")
+					|| e.getMessage().contains("problem: accountType")
+					|| e.getMessage().contains("problem: address")
+					|| e.getMessage().contains("problem: name")
+					|| e.getMessage().contains("problem: bankId")
+					|| e.getMessage().contains("problem: contractReference")
+					|| e.getMessage().contains("problem: exchange_rate")
+					|| e.getMessage().contains("problem: original_amount")
+					|| e.getMessage().contains("problem: bearerCode")
+					) {
 				log.debug("Controller Advice is broken with this version as Spring Boot so this is a work around until then - no RE throw");
 			}else {
 				throw e;

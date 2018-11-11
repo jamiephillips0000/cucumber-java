@@ -99,7 +99,7 @@ Feature: Add a Resource
 	And the attribute "$.type" is incorrectly set to "ayment"
     And the request is sent and fails and error message contains "type must be equal 'Payment' and not 'ayment'"
     And the attribute "$.type" is not present
-    And the request is sent and fails and the error code is "400"
+    And the request is sent and fails and the error code is "500"
     And the attribute "$.type" is incorrectly set to ""
     And the request is sent and fails and the error code is "400"
     
