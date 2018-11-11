@@ -48,7 +48,10 @@ Deliverables
 
 ## Running 
 * git clone https://github.com/jamiephillips0000/interview-task.git
-* find the interwiew-task/src/main/resources/application.yml and change the user/pass for Mongo Atlas with the ones I provided in the accompanying email e.g. url : mongodb+srv://<username>:<password>@cluster0.mongodb.net?retryWrites=true 
+* find the interwiew-task/src/main/resources/application.yml and change the user/pass for Mongo Atlas with the ones I provided in the accompanying email e.g. 
+```
+url : mongodb+srv://<username>:<password>@cluster0.mongodb.net?retryWrites=true
+``` 
 * cd interview-task
 * mvn clean package // check for errors
 * mvn spring-boot:run // will run it 
