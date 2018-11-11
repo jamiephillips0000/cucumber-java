@@ -32,7 +32,6 @@ import com.form3.repository.ResourceRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class , webEnvironment=WebEnvironment.RANDOM_PORT)
-
 public class TestRest {
 
 	/**
@@ -65,7 +64,11 @@ public class TestRest {
     
     
     
-
+	/**
+	 * make 2 post requests and then select the results back
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	@Test
 	public void testGet() throws RestClientException, URISyntaxException {
 		post();
@@ -74,6 +77,11 @@ public class TestRest {
         assertEquals(resources.getStatusCode(), HttpStatus.OK);
         assertEquals(resources.getBody().size(), 2);
 	}
+	/**
+	 * pake a post request and select it back by ID
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	@Test
 	public void testGetById() throws RestClientException, URISyntaxException {
 		
@@ -81,6 +89,12 @@ public class TestRest {
         assertEquals(resources.getStatusCode(), HttpStatus.OK);
 	}
 	
+	/**
+	 * Utility method to get all records in the datastore for this service
+	 * @return a ResponseEntity wrapping a list of Resources and a HTTP Status
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	private ResponseEntity<List<Resource>> get() throws RestClientException, URISyntaxException{
 		URI endpoint = this.base.toURI();
 		ResponseEntity<List<Resource>> response = template.exchange(endpoint,HttpMethod.GET,
@@ -88,6 +102,13 @@ public class TestRest {
 				  new ParameterizedTypeReference<List<Resource>>(){});
 		return response;
 	}
+	/**
+	 * A utility method to get a resource by provided ID
+	 * @param id
+	 * @return
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	private ResponseEntity<Resource> getById(String id) throws RestClientException, URISyntaxException{
 		URI endpoint = new URI(this.base.toURI()+"/"+id);
 		ResponseEntity<Resource> response = template.exchange(endpoint,HttpMethod.GET,
@@ -96,7 +117,23 @@ public class TestRest {
 		return response;
 	}
 	
+	/**
+	 * Tests delete functionality
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
+	@Test
+	public void testDelete() throws RestClientException, URISyntaxException {
+		ResponseEntity<Resource> responseEntity = post();
+		delete(responseEntity.getBody().get_Id());
+	}
 	
+	/**
+	 * Utility method to make post requests 
+	 * @return a ResponseEntity wrapping a Resource and a HTTP Status
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	private ResponseEntity<Resource> post() throws RestClientException, URISyntaxException {
 		String rec = "{\n" + 
 				"    \"type\": \"Payment\",\n" + 
@@ -172,6 +209,25 @@ public class TestRest {
 		
 		return response;
 	}
+	
+	/**
+	 * Utility method to delete resouces by ID
+	 * @param id
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
+	private void delete(String id) throws RestClientException, URISyntaxException {
+		template.delete(this.base.toURI()+ "/" + id);		
+	}
+	
+	
+	/**
+	 * Utility method to update a resource by ID
+	 * @param id 
+	 * @return a ResponseEntity wrapping a Resource and a HTTP Status
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	private ResponseEntity<Resource> put(String id) throws RestClientException, URISyntaxException {
 		String rec = "{\n" + 
 				"    \"id\": \"" +id +"\" ,\n" + 
@@ -245,6 +301,11 @@ public class TestRest {
 		return putResponse;
 	}
 	
+	/**
+	 * Tests POST functionality
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	@Test
 	public void testPost() throws RestClientException, URISyntaxException {
 		ResponseEntity<Resource> response = post();     
@@ -252,14 +313,16 @@ public class TestRest {
 	}
 
 	
-	
+	/**
+	 * Tests PUt functionality
+	 * @throws RestClientException
+	 * @throws URISyntaxException
+	 */
 	@Test
 	public void testPut() throws RestClientException, URISyntaxException {
 		ResponseEntity<Resource> response = post();
 		ResponseEntity<Resource> putResource = put(response.getBody().get_Id());
 		assertEquals(putResource.getStatusCode(), HttpStatus.CREATED);
 	}
-
-	
 	
 }

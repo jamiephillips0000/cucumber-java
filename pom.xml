@@ -17,7 +17,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.0.RC1</version>
-		<relativePath />
 	</parent>
 
 	<properties>
@@ -117,11 +116,7 @@
 			<artifactId>commons-lang</artifactId>
 			<version>${common-lang.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>ma.glasnost.orika</groupId>
-			<artifactId>orika-core</artifactId>
-			<version>${orika-core.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -133,8 +128,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox-swagger2.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>io.springfox</groupId> <artifactId>springfox-data-rest</artifactId> 
-			<version>${springfox-swagger2.version}</version> </dependency> -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-bean-validators</artifactId>
@@ -145,11 +138,7 @@
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.mongodb.morphia</groupId>
-			<artifactId>morphia</artifactId>
-			<version>1.2.1</version>
-		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

@@ -61,8 +61,11 @@ public class ResourceSteps extends ParentSteps {
 
 	@Before
 	public void setUp() {
+		
+		
+		
 		this.mockMvc = MockMvcBuilders.standaloneSetup(resourceController)
-				// .webAppContextSetup(context)
+					// .webAppContextSetup(context)
 				.setControllerAdvice(new AppExceptionHandler()).build();
 	}
 
