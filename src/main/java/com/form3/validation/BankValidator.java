@@ -39,25 +39,25 @@ public class BankValidator implements Validator{
 	public void validate(final String httpMethod, final Resource resource, final Resource dbResource) {
 		if(BANKS.containsKey(resource.getAttributes().getSponsorParty().getBankId())){
 			if(!BANKS.get(resource.getAttributes().getSponsorParty().getBankId()).equals(resource.getAttributes().getSponsorParty().getBankIdCode())){
-				throw new RuntimeException("$.attriutes.sponsor_party.bank_id_code'" + resource.getAttributes().getSponsorParty().getBankIdCode() + " is unknown");
+				throw new RuntimeException("Resource Validation Error : $.attriutes.sponsor_party.bank_id_code'" + resource.getAttributes().getSponsorParty().getBankIdCode() + " is unknown");
 			}
 		}else {
-			throw new RuntimeException("$.attriutes.sponsor_party.bank_id'" + resource.getAttributes().getSponsorParty().getBankId() + " is unknown");
+			throw new RuntimeException("Resource Validation Error : $.attriutes.sponsor_party.bank_id'" + resource.getAttributes().getSponsorParty().getBankId() + " is unknown");
 		}
 		
 		if(BANKS.containsKey(resource.getAttributes().getDebtorParty().getBankId())){
 			if(!BANKS.get(resource.getAttributes().getDebtorParty().getBankId()).equals(resource.getAttributes().getDebtorParty().getBankIdCode())){
-				throw new RuntimeException("$.attriutes.debtor_party.bank_id_code'" + resource.getAttributes().getDebtorParty().getBankIdCode() + " is unknown");
+				throw new RuntimeException("Resource Validation Error : $.attriutes.debtor_party.bank_id_code'" + resource.getAttributes().getDebtorParty().getBankIdCode() + " is unknown");
 			}
 		}else {
-			throw new RuntimeException("$.attriutes.debtor_party.bank_id'" + resource.getAttributes().getDebtorParty().getBankId() + " is unknown");
+			throw new RuntimeException("Resource Validation Error : $.attriutes.debtor_party.bank_id'" + resource.getAttributes().getDebtorParty().getBankId() + " is unknown");
 		}
 		if(BANKS.containsKey(resource.getAttributes().getBeneficiaryParty().getBankId())){
 			if(!BANKS.get(resource.getAttributes().getBeneficiaryParty().getBankId()).equals(resource.getAttributes().getBeneficiaryParty().getBankIdCode())){
-				throw new RuntimeException("$.attriutes.beneficiary_party.bank_id_code'" + resource.getAttributes().getBeneficiaryParty().getBankIdCode() + " is unknown");
+				throw new RuntimeException("Resource Validation Error : $.attriutes.beneficiary_party.bank_id_code'" + resource.getAttributes().getBeneficiaryParty().getBankIdCode() + " is unknown");
 			}
 		}else {
-			throw new RuntimeException("$.attriutes.beneficiary_party.bank_id'" + resource.getAttributes().getBeneficiaryParty().getBankId() + " is unknown");
+			throw new RuntimeException("Resource Validation Error : $.attriutes.beneficiary_party.bank_id'" + resource.getAttributes().getBeneficiaryParty().getBankId() + " is unknown");
 		}
 		
 	}

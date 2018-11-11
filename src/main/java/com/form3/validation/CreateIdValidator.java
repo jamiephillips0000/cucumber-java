@@ -24,7 +24,7 @@ public class CreateIdValidator implements Validator{
 		
 		if (Config.POST.equals(httpMethod)) {
 			if(resource.get_Id() != null) {
-				throw new RuntimeException("Id cannot be present in a POST/Create'" + resource.get_Id()+ "'");
+				throw new RuntimeException("Resource Validation Error : Id cannot be present in a POST/Create'" + resource.get_Id()+ "'");
 			}
 		}
 	}

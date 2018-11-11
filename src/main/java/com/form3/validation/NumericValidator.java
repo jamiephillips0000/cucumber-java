@@ -22,7 +22,7 @@ public class NumericValidator implements Validator{
 	@Override
 	public void validate(final String httpMethod, final Resource resource, final Resource dbResource) {
 		if (!resource.getAttributes().getNumericReference().matches("[0-9]+")) {
-			throw new RuntimeException("$.attributes.numeric_reference must be a number and not '" + resource.getAttributes().getNumericReference()+"'");
+			throw new RuntimeException("Resource Validation Error : $.attributes.numeric_reference must be a number and not '" + resource.getAttributes().getNumericReference()+"'");
 		}
 	}
 }

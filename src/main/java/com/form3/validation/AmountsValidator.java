@@ -26,7 +26,7 @@ public class AmountsValidator implements Validator{
 	public void validate(final String httpMethod, final Resource resource, final Resource dbResource) {
 		
 		if(resource.getAttributes().getAmount().compareTo(BigDecimal.ZERO) == -1) {
-			throw new RuntimeException("Amount to move must be greater than zero" + resource.getVersion()+ "'");
+			throw new RuntimeException("Resource Validation Error :  Resource Validation Error : Amount to move must be greater than zero" + resource.getVersion()+ "'");
 		}
 		// sender charges
 		BigDecimal amtOrigCurrency = resource.getAttributes().getAmount().add(BigDecimal.ZERO);
@@ -42,20 +42,20 @@ public class AmountsValidator implements Validator{
 			
 		}
 		if(amtSenderChargesOrigCurrency == null || amtSenderChargesOrigCurrency.compareTo(BigDecimal.ZERO) == -1) {
-			throw new RuntimeException("Amount of sender charges cannot be zero or less" );
+			throw new RuntimeException("Resource Validation Error : Amount of sender charges cannot be zero or less" );
 		}
 		if(amtReceiverChargesOrigCurrency == null || amtReceiverChargesOrigCurrency.compareTo(BigDecimal.ZERO) == -1) {
-			throw new RuntimeException("Amount of receiver charges cannot be zero or less");
+			throw new RuntimeException("Resource Validation Error : Amount of receiver charges cannot be zero or less");
 		}
 		BigDecimal senderAmtLeftAfterSenderCharges = amtOrigCurrency.subtract(amtSenderChargesOrigCurrency);
 		if(senderAmtLeftAfterSenderCharges.compareTo(BigDecimal.ZERO) == -1) {
-			throw new RuntimeException("Amount left after sender charges has been chanrged cannot be less than zero" );
+			throw new RuntimeException("Resource Validation Error : Amount left after sender charges has been chanrged cannot be less than zero" );
 		}
 		BigDecimal amtInDestinationCurrency = 
 				senderAmtLeftAfterSenderCharges.multiply(resource.getAttributes().getFx().getExchange_rate());
 		
 		if(amtInDestinationCurrency.subtract(amtReceiverChargesOrigCurrency).subtract(resource.getAttributes().getChargesInformation().getReceiverChargesAmount()).compareTo(BigDecimal.ZERO) == -1){
-			throw new RuntimeException("Amount in destination currency must be greater than the sender and receiver charges" + resource.getVersion()+ "'");
+			throw new RuntimeException("Resource Validation Error : Amount in destination currency must be greater than the sender and receiver charges" + resource.getVersion()+ "'");
 		}
 		
 		

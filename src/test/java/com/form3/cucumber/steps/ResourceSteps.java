@@ -264,7 +264,7 @@ public class ResourceSteps extends ParentSteps {
 	public void the_request_is_sent_times_with_this_content(String times, String content) throws Throwable {
 		for(int i=0 ; i < Integer.parseInt(times); i++) {
 			this.mockHttpServletRequestBuilder = post("/api/v1/resource");
-			this.mockHttpServletRequestBuilder.content(JsonPath.parse(content).set("$.version", i).jsonString());
+			this.mockHttpServletRequestBuilder.content(JsonPath.parse(content).jsonString());
 			this.mockHttpServletRequestBuilder.header("Content-Type", "application/json");
 			this.resultActions = mockMvc.perform(this.mockHttpServletRequestBuilder);			
 		}
@@ -370,7 +370,11 @@ public class ResourceSteps extends ParentSteps {
 				throw new RuntimeException("Error status code should have been + '" + statusCode + "'");
 			}
 		}catch (Throwable e) {
-			log.debug("Controller Advice is broken with this version as Spring Boot so this is a work around until then - no RE throw"); 
+			if(e.getMessage().contains("Resource Validation Error : ")) {
+				log.debug("Controller Advice is broken with this version as Spring Boot so this is a work around until then - no RE throw");
+			}else {
+				throw e;
+			}
 		}
 	}
 

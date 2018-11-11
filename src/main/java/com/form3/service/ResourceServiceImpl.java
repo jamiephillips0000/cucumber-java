@@ -55,7 +55,7 @@ public class ResourceServiceImpl implements ResourceService{
 	@Override
 	public Resource create(final Resource resource) {
 		this.createIdValidator.validate("POST", resource, null);
-//		this.versionValidator.validate("POST", resource, null);
+		this.versionValidator.validate("POST", resource, null);
 		this.numericValidator.validate("POST", resource, null);
 		this.lookupTableValidator.validate("POST", resource, null);
 		this.bankValidator.validate("POST", resource, null);
